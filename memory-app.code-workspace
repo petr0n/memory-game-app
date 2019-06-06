@@ -4,5 +4,13 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.tabSize": 2,
+		"editor.insertSpaces": false,
+		"editor.wordWrap": "on",
+		"editor.wordWrapColumn": 120,
+		"files.exclude": {
+			"**/node_modules": true
+		}
+	}
 }
