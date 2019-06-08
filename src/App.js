@@ -1,13 +1,17 @@
 import React from 'react';
 import './App.css';
+import Wrapper from './components/Wrapper/';
+import Header from './components/Header/';
+import Footer from './components/Footer/';
+import Gameboard from './components/Gameboard/';
 
 function App() {
   return (
-    <div className="text-center">
-      <header className="App-heabg-purple-darker m-6 p-6 rounded shadow-lgder">
-        <h1>Memory Game</h1>
-      </header>
-    </div>
+    <Wrapper>
+      <Header />
+      <Gameboard />
+      <Footer />
+    </Wrapper>
   );
 }
 
