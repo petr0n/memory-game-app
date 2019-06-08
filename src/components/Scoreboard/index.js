@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 
 class Scoreboard extends Component {
-	// state = {
-	// 	overallScore: 0,
-	// 	currentGameScore: 0
-	// };
 
 	render() {	
 		return (
 			<div className="flex justify-end">
 				<div className="rounded mr-8">
-					Current Score: {this.state.currentGameScore}
+					Current Score: {this.props.currentGameScore}
 				</div>
 				<div className="rounded">
-					Total Score: 0
+					Total Score: {this.props.overallScore}
 				</div>
 			</div>
 		)
