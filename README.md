@@ -8,7 +8,7 @@ For fun you can switch the suit you can play with by clicking on the suit name i
 This is a basic React app that has a number of components and uses a Higher Order Component for fading in cards on game start.
 
 ## See the game in action
-![alt text](https://petr0n.github.io/memory-game-app/Memory-Game-App.gif "Preview the app")
+![alt text](https://raw.githubusercontent.com/petr0n/memory-game-app/master/Memory-Game-App.gif "Preview the app")
 
 
 
