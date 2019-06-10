@@ -15,32 +15,41 @@ class App extends Component {
 		this.state = {
 			overallScore: 0,
       currentGameScore: 0,
-      guessedCards: []
+			guessedCards: [],
+			currentSuit: 'clubs'
 		};
+		this.newOverallScore = this.state.currentGameScore;
+		this.newScore = this.state.currentGameScore;
   }
 
-  handleCardClick = (card) => {
+  handleCardClick = (e,card) => {
+		e.preventDefault();
 		let gCards = this.state.guessedCards;
 		if (gCards.includes(card)) {
-			console.log('already guessed!')
+			console.log('already guessed!');
+			this.newOverallScore = ++this.newOverallScore;
+			this.setState({ 
+				overallScore: this.newOverallScore,
+				currentGameScore: 0
+			});
 		} else {
-			let newScore = this.state.currentGameScore;
-			newScore = ++newScore;
-			this.setState({ currentGameScore: newScore })
+			this.newScore = ++this.newScore;
+			this.setState({ currentGameScore: this.newScore });
 			gCards.push(card);
 		}
 		this.setState({ guessedCards: gCards });
-		console.log('currentGameScore', this.state.currentGameScore);
-		this.initGame();
+		// console.log('currentGameScore', this.state.currentGameScore);
+		this.initGame(this.cards[this.state.currentSuit]);
   }
 
   componentDidMount() {
     this.initGame();
   }
 
-	initGame = () => {
-		let randomCards = this.shuffleCards(this.cards);
-		console.log('randomCards', randomCards);
+	initGame = (currentSuit = this.cards[this.state.currentSuit]) => {
+		// console.log('this.cards.clubs', this.cards.clubs);
+		let randomCards = this.shuffleCards(currentSuit);
+		// console.log('randomCards', randomCards);
 		this.setState({ randomCards: this.createGameTiles(randomCards) });
 	}
 
@@ -62,15 +71,24 @@ class App extends Component {
 		return cards;
 	}
 
+	changeSuit = (suit) => {
+		// console.log('suit', suit);
+		this.setState({ 
+			currentSuit: suit,
+			currentGameScore: 0
+		});
+		this.initGame(this.cards[suit]);
+	}
   
   render() {
     return (
       <Wrapper>
-      <Header 
-        currentGameScore={this.state.currentGameScore} 
-        overallScore={this.state.overallScore} />
-      <Gameboard randomCards={this.state.randomCards} />
-      <Footer />
+				<Header 
+					currentGameScore={this.state.currentGameScore} 
+					overallScore={this.state.overallScore}
+					changeSuit={this.changeSuit} />
+					<Gameboard randomCards={this.state.randomCards} />
+				<Footer />
       </Wrapper>
     );
   }
