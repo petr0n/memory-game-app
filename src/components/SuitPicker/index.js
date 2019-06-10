@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class SuitPicker extends Component {
 	
 	render(){
-		console.log('this.props.currentSuit', this.props)
 		return (
 			<ul className="flex flex-row items-center justify-end content-center">
 				<li className="text-xs">Pick a different suit</li>
