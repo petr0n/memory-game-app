@@ -2,16 +2,33 @@ import React, { Component } from 'react';
 
 const AnimateLoad = (WrappedComponent) => {
 	return class extends Component {
-		state = {didMount: false}
-		componentDidMount(){
-			setTimeout(() => {
-				this.setState({didMount: true})
-			}, 500);
+		state = {
+			visible: ''
 		}
+
+		addDelay() {
+			this.timeoutId = setTimeout(function () {
+				this.setState({visible: true});
+			}.bind(this), 500);
+		}
+
+		componentDidMount () {
+			this.addDelay();
+		} 
+		componentWillUnmount () {
+			if (this.timeoutId) {
+				clearTimeout(this.timeoutId);
+				this.setState({visible: false});
+			}
+		}
+		componentDidUpdate() {
+			// console.log('componentDidUpdate');
+			// this.addDelay();
+		}
+
 		render(){
-			const {didMount} = this.state
 			return (
-				<div className={`h-30 p-3 w-1/4 fade-in ${didMount && 'visible'}`}>
+				<div className={`fade-in ${this.state.visible ? 'visible' : null}`}>
 					<WrappedComponent {...this.props} />
 				</div>
 			);

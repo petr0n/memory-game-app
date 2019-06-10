@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
-
+import AnimateLoad from '../../components/AnimateLoad.js';
 
 
 class Gameboard extends Component {
@@ -12,10 +12,14 @@ class Gameboard extends Component {
 	render() {	
 		return (
 			<div className="flex flex-wrap my-8 p-3 bg-orange-100">
-					{this.props.randomCards}
+				{this.props.randomCards}
 			</div>
 		)
 	}
 }
 
-export default Gameboard;
+const WrappedComponent = AnimateLoad(Gameboard);
+
+export default WrappedComponent;
+
+// export default Gameboard;

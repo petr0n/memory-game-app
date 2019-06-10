@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import Wrapper from './components/Wrapper/';
 import Header from './components/Header/';
 import Footer from './components/Footer/';
+import Wrapper from './components/Wrapper/';
+import Scoreboard from './components/Scoreboard/';
 import Gameboard from './components/Gameboard/';
+import Gameover from './components/Gameover/';
 import Gametile from './components/Gametile';
 import Cards from './components/Cards.js';
 
@@ -16,7 +18,8 @@ class App extends Component {
 			overallScore: 0,
       currentGameScore: 0,
 			guessedCards: [],
-			currentSuit: 'clubs'
+			currentSuit: 'clubs',
+			gameOver: false
 		};
 		this.newOverallScore = this.state.currentGameScore;
 		this.newScore = this.state.currentGameScore;
@@ -25,26 +28,32 @@ class App extends Component {
   handleCardClick = (e,card) => {
 		e.preventDefault();
 		let gCards = this.state.guessedCards;
+		console.log('gCards', gCards);
 		if (gCards.includes(card)) {
 			console.log('already guessed!');
 			this.newOverallScore = ++this.newOverallScore;
+			this.newScore = 0;
+			gCards = [];
 			this.setState({ 
 				overallScore: this.newOverallScore,
-				currentGameScore: 0
+				currentGameScore: 0,
+				gameOver: true
 			});
+			
 		} else {
 			this.newScore = ++this.newScore;
 			this.setState({ currentGameScore: this.newScore });
 			gCards.push(card);
+			this.initGame(this.cards[this.state.currentSuit]);
 		}
 		this.setState({ guessedCards: gCards });
 		// console.log('currentGameScore', this.state.currentGameScore);
-		this.initGame(this.cards[this.state.currentSuit]);
   }
 
   componentDidMount() {
     this.initGame();
   }
+
 
 	initGame = (currentSuit = this.cards[this.state.currentSuit]) => {
 		// console.log('this.cards.clubs', this.cards.clubs);
@@ -79,17 +88,30 @@ class App extends Component {
 		});
 		this.initGame(this.cards[suit]);
 	}
+
+	restartGame = () => {
+		this.setState({ gameOver: false });
+		this.initGame(this.cards[this.state.currentSuit]);
+	}
   
   render() {
+		// console.log('this.state.gameOver', this.state.gameOver);
     return (
-      <Wrapper>
+			<div>
 				<Header 
+					changeSuit={this.changeSuit}
+					currentSuit={this.state.currentSuit} />
+				<Scoreboard 
 					currentGameScore={this.state.currentGameScore} 
-					overallScore={this.state.overallScore}
-					changeSuit={this.changeSuit} />
-					<Gameboard randomCards={this.state.randomCards} />
+					overallScore={this.state.overallScore} />
+				<Wrapper>
+					{this.state.gameOver ? 
+						(<Gameover restartGame={this.restartGame} />) :
+						(<Gameboard randomCards={this.state.randomCards} />)
+					}
+				</Wrapper>
 				<Footer />
-      </Wrapper>
+			</div>
     );
   }
 }
