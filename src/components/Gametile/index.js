@@ -9,7 +9,7 @@ class Gametile extends Component {
 		this.flipCardOver = this.flipCardOver.bind(this);
 		this.flipCardOut = this.flipCardOut.bind(this);
 		this.handleClick = this.handleClick.bind(this);
-		this.cardSrcUrl = `/images/${props.card}.png`;
+		this.cardSrcUrl = `../images/${props.card}.png`;
 		this.cardFrontStyle = {
 			backgroundImage: `url(${this.cardSrcUrl})`
 		}
