@@ -11,7 +11,6 @@ This is a basic React app that has a number of components and uses a Higher Orde
 ![alt text](https://raw.githubusercontent.com/petr0n/memory-game-app/master/Memory-Game-App.gif "Preview the app")
 
 
-
-## Resources
+## App Links 
 [The repo](https://github.com/petr0n/memory-game-app)
 [The game](https://petr0n.github.io/memory-game-app/)

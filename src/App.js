@@ -25,7 +25,7 @@ class App extends Component {
 		this.newScore = this.state.currentGameScore;
   }
 
-  handleCardClick = (e,card) => {
+  handleCardClick = (e, card) => {
 		e.preventDefault();
 		let gCards = this.state.guessedCards;
 		console.log('gCards', gCards);
