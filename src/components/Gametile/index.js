@@ -13,6 +13,9 @@ class Gametile extends Component {
 		this.cardFrontStyle = {
 			backgroundImage: `url(${this.cardSrcUrl})`
 		}
+		this.cardBackStyle = {
+			backgroundImage: "url('./images/back.png')"
+		}
   }
 
 	flipCardOver = (e) => { e.currentTarget.classList.add('is-flipped') }
@@ -30,7 +33,7 @@ class Gametile extends Component {
 					<div className="scene" onClick={e => this.handleClick(e, this.card)}>
 						<div className="card" onMouseOver={this.flipCardOver} onMouseOut={this.flipCardOut}>
 							<div className="card__face card__face--front" style={this.cardFrontStyle}></div>
-							<div className="card__face card__face--back"></div>
+							<div className="card__face card__face--back" style={this.cardBackStyle}></div>
 						</div>
 					</div>
 				</div>

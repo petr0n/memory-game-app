@@ -28,7 +28,6 @@
 
 .card__face--back {
 	background-size: cover;
-	background-image: url('/../../images/back.png');
   transform: rotateY(180deg);
 }
 .card.is-flipped .card__face--front {
