@@ -25,7 +25,7 @@ class App extends Component {
 		this.newScore = this.state.currentGameScore;
   }
 
-  handleCardClick = (e, card) => {
+  handleCardClick = (e,card) => {
 		e.preventDefault();
 		let gCards = this.state.guessedCards;
 		console.log('gCards', gCards);
@@ -47,7 +47,6 @@ class App extends Component {
 			this.initGame(this.cards[this.state.currentSuit]);
 		}
 		this.setState({ guessedCards: gCards });
-		// console.log('currentGameScore', this.state.currentGameScore);
   }
 
   componentDidMount() {
@@ -56,9 +55,7 @@ class App extends Component {
 
 
 	initGame = (currentSuit = this.cards[this.state.currentSuit]) => {
-		// console.log('this.cards.clubs', this.cards.clubs);
 		let randomCards = this.shuffleCards(currentSuit);
-		// console.log('randomCards', randomCards);
 		this.setState({ randomCards: this.createGameTiles(randomCards) });
 	}
 
@@ -81,7 +78,6 @@ class App extends Component {
 	}
 
 	changeSuit = (suit) => {
-		// console.log('suit', suit);
 		this.setState({ 
 			currentSuit: suit,
 			currentGameScore: 0
@@ -95,8 +91,7 @@ class App extends Component {
 	}
   
   render() {
-		// console.log('this.state.gameOver', this.state.gameOver);
-    return (
+		return (
 			<div>
 				<Header 
 					changeSuit={this.changeSuit}
